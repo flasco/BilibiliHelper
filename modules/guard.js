@@ -23,7 +23,7 @@ const main = async () => {
   if (csrfToken == null) csrfToken = getCsrf()
   const uid = config.get('uid', '')
   if (uid === '') throw new Error('uid获取失败')
-  const list = await getGuardList(uid)
+  const list = await getGuardList(+uid + 21)
 
   // has_list 大于 10000 的时候清理前 9000 条
   if (has_list.length > 10000) has_list.splice(0, 9000);
@@ -54,7 +54,7 @@ const main = async () => {
       } else if (result.code === 400 && result.msg.includes('领取过')) {
         logger.info(`【${OriginRoomId}】 ${result.msg}`)
       } else if (result.code === 400 && result.msg.includes('被拒绝')) {
-        logger.warning(`【${OriginRoomId}】 ${result.data.message}`)
+        logger.warning(`【${OriginRoomId}】 ${result.message}`)
       } else {
         logger.error(`【${OriginRoomId}】 领取出错`)
       }
