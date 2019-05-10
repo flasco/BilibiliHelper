@@ -70,13 +70,13 @@ const main = async () => {
         const msg = result.data.message;
         const addSum = msg.match(/\+(\d+)~/)[1] || 0;
         totalAddSum += +addSum;
-        logger.notice(`【${OriginRoomId}】 ${result.data.message}, 累计增加 ${totalAddSum} 点`)
+        logger.notice(`【${originRoomid}】 ${result.data.message}, 累计增加 ${totalAddSum} 点`)
       } else if (result.code === 400 && result.msg.includes('领取过')) {
-        logger.info(`【${OriginRoomId}】 ${result.msg}`)
+        logger.info(`【${originRoomid}】 ${result.msg}`)
       } else if (result.code === 400 && result.msg.includes('被拒绝')) {
-        logger.warning(`【${OriginRoomId}】 ${result.message}`)
+        logger.warning(`【${originRoomid}】 ${result.message}`)
       } else {
-        logger.error(`【${OriginRoomId}】 领取出错`)
+        logger.error(`【${originRoomid}】 领取出错`)
       }
 
       if (result.code) {
